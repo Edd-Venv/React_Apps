@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Link from "./Link.js";
 
 function Nav() {
   const navStyle = {
@@ -14,14 +15,40 @@ function Nav() {
           </big>
         </h1>
         <ul className="nav-links " style={{ fontSize: "1.2em" }}>
-          <Link to="/TodoApp" style={navStyle}>
+          <NavLink
+            to="/TodoApp"
+            style={navStyle}
+            activeStyle={{ color: "brown" }}
+            exact
+          >
             TodoApp
-          </Link>
-          <Link to="/" style={navStyle}>
+          </NavLink>
+          <NavLink
+            exact
+            to="/"
+            style={navStyle}
+            activeStyle={{ color: "brown" }}
+          >
             Home
+          </NavLink>
+          <Link
+            exact
+            to="https://github.com/Edd-Venv/React_Apps/tree/master/src"
+            style={navStyle}
+            activeStyle={{ color: "brown" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
           </Link>
-          <Link style={navStyle}>Github</Link>
-          <Link to="edwinushibantu.eu.pythonanywhere.com/" style={navStyle}>
+          <Link
+            exact
+            to="https://edwinushibantu.eu.pythonanywhere.com/"
+            style={navStyle}
+            activeStyle={{ color: "brown" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Django Applications
           </Link>
         </ul>
