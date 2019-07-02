@@ -1,5 +1,28 @@
 .App {
+  min-height: 100vh;
   text-align: left;
+}
+.search-form {
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar {
+  width: 50%;
+  border: none;
+  padding: 10px;
+}
+.search-button {
+  background: grey;
+  border: 5px;
+  padding: 10px 20px;
+  color: black;
+}
+.recipes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .flexContainer {
   display: flex;
@@ -10,29 +33,14 @@ nav {
   justify-content: space-around;
   text-align: Center;
   min-height: 10vh;
-  background: grey;
-  color: rgb(39, 39, 39);
+  background: #333333;
+  color: #999999;
 }
 .nav-links {
   width: 50%;
   display: flex;
   justify-content: space-around;
-  align-items: Center;
+  align-items: center;
   list-style: none;
-}
-.todo-list {
-  background-color: white;
-  margin: auto;
-  width: 55%;
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  border: 1px solid #efefef;
-  box-shadow:
-    /* The top layer shadow*/ 0 1px 1px rgba(0, 0, 0, 0.15),
-    /* The second layer */ 0 10px 0 -5px #eee,
-    /* The second layer shadow*/ 0 10px 1px -4px rgba(0, 0, 0, 0.15),
-    /* The third layer*/ 0 20px 0 -10px #eee,
-    /* The third layer shadow*/ 0 20px 1px -9px rgba(0, 0, 0, 0.15);
-  padding: 30px;
+  color: grey;
 }

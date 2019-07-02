@@ -1,51 +1,65 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import Nav from "./Components/Nav.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import List from "./Components/List.js";
+import Recipe from "./Recipe";
+import Nav from "./Nav.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: []
-    };
-  }
+const App = () => {
+  const APP_ID = "b15fcd61";
+  const APP_KEY = "3182d192a125f00e4a714b5416c4fdb0";
 
-  render() {
-    return (
-      <div>
-        <Router>
-          <div>
-            <Nav />
-          </div>
-          <div>
-            <Route path="/" exact component={Home} />
-            <Route path="/TodoApp" exact component={List} />
-          </div>
-        </Router>
-      </div>
+  const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("chicken");
+
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+  const getRecipes = async () => {
+    const response = await fetch(
+      `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     );
-  }
-}
-
-const Home = () => (
-  <div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div style={{ width: "45%", color: "black" }}>
-      <p style={{ fontSize: "1.6em", color: "black" }}>
-        Welcome to my website, I build WebApplications with <big>React js</big>{" "}
-        and <big>Django</big>, on this website all applications are built using{" "}
-        <big>Reactjs.</big>
-        <br /> The is a link to my Django applications in the Navigation Bar.
-      </p>
+    const data = await response.json();
+    setRecipes(data.hits);
+  };
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  };
+  const getSearch = e => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+  };
+  return (
+    <div className="App">
+      <Router>
+        <div>
+          <Nav />
+        </div>
+      </Router>
+      <form className="search-form" onSubmit={getSearch}>
+        <input
+          type="text"
+          className="search-bar"
+          value={search}
+          onChange={updateSearch}
+        />
+        <button type="submit" className="search-button">
+          Search
+        </button>
+      </form>
+      <div className={recipes}>
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
-
+  );
+};
 export default App;
