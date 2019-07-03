@@ -5,8 +5,8 @@ import Nav from "./Nav.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => {
-  const APP_ID = "b15fcd61";
-  const APP_KEY = "3182d192a125f00e4a714b5416c4fdb0";
+  const APP_ID = "";
+  const APP_KEY = "";
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
